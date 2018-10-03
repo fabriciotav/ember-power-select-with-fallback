@@ -15,6 +15,20 @@
         {{/if}}
       {{/each}}
 
+    {{else if translationKey}}
+
+      {{#each options as |opt index|}}
+        {{#if opt.groupName}}
+          <optgroup label={{opt.groupName}}>
+            {{#each opt.options as |suboption subindex|}}
+              <option value="{{index}}.{{subindex}}" selected={{if (eq suboption selected) true}}>{{suboption}}</option>
+            {{/each}}
+          </optgroup>
+        {{else}}
+          <option value="{{index}}" selected={{if (eq opt selected) true}}>{{t (concat translationKey opt)}}</option>
+        {{/if}}
+      {{/each}}
+
     {{else}}
 
       {{#each options as |opt index|}}
